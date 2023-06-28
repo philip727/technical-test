@@ -1,8 +1,8 @@
 # Prerequisites
-**[Golang](https://golang.org/dl/)**
-**[SSMS/SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)**
-**[Postman](https://www.postman.com/downloads/)**
-**[Docker](https://www.docker.com/products/cli/)**
+ - **[Golang](https://golang.org/dl/)**
+ - **[SSMS/SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)**
+ - **[Postman](https://www.postman.com/downloads/)**
+ - **[Docker](https://www.docker.com/products/cli/)**
 
 # Before Hand
 Couldn't get the **Bonus** working. Tried many different ways and couldn't figure out how to get a specific status code from "graphql-go" handlers. Couldn't check for error type and couldn't add to "extensions" for specific error codes.

@@ -1,5 +1,9 @@
+-- Run each query one by one
+CREATE DATABASE SecuriGroup;
+
+USE SecuriGroup;
+
 CREATE SCHEMA SecuriGroup;
-GO
 
 CREATE TABLE SecuriGroup.employees (
 	id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,

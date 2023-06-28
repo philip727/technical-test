@@ -7,11 +7,13 @@ import (
 	"securigroup/tech-test/utils"
 )
 
+// Creates an employee in the mssql db and emails them with a welcome message
 func CreateEmployee(db *sql.DB, args map[string]interface{}) (string, error) {
 	query := "INSERT INTO SecuriGroup.employees"
 	columnsString := ""
 	valuesString := ""
 
+    // Creates the query for the columns and values that need to be added
 	for index, pair := range utils.Enumerate(args) {
 		column := pair.Key
 		value := pair.Value
@@ -37,7 +39,9 @@ func CreateEmployee(db *sql.DB, args map[string]interface{}) (string, error) {
 	}
 
 	subject := fmt.Sprintf("Welcome to SecuriGroup, %s%s", args["firstName"].(string), "!")
+
 	// The name is completely random :)
+    // A warm welcome subject
 	body := fmt.Sprintf(
 		`Dear %s 
 

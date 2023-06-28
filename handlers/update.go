@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Finds the user by id and updates them with new values
 func UpdateEmployee(db *sql.DB, args map[string]interface{}) (string, error) {
     query := "UPDATE SecuriGroup.employees "
     setQueries := make([]string, 0)

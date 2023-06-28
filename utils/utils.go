@@ -32,7 +32,7 @@ func ConvertCamelToSnake(camelCase string) string {
 	return buffer.String()
 }
 
-// Enmurate over a map
+// Enmurates over a map
 func Enumerate(m map[string]interface{}) []Pair {
 	pairs := make([]Pair, len(m))
 	i := 0

@@ -8,6 +8,7 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
+// The inputs required for creating an employee
 var CreateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
 	Name: "CreateEmployeeInput",
 	Fields: graphql.InputObjectConfigFieldMap{
@@ -38,9 +39,11 @@ var CreateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
 	},
 })
 
+// The inputs required for updating an employee
 var UpdateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
 	Name: "UpdateEmployeeInput",
 	Fields: graphql.InputObjectConfigFieldMap{
+        // Non null because we update by the user by their id
 		"id": &graphql.InputObjectFieldConfig{
 			Type: graphql.NewNonNull(graphql.Int),
 		},
@@ -71,6 +74,7 @@ var UpdateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
 	},
 })
 
+// The different types of possible mutations
 func CreateRootMutation(db *sql.DB) *graphql.Object {
 	var RootMutation = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Mutation",
@@ -125,7 +129,6 @@ func CreateRootMutation(db *sql.DB) *graphql.Object {
 						return false, err
 					}
                     
-                    // This library is pretty limited and you can not send custom status codes from it
 					if !ok {
 						return false, errors.New("No employee exists with the id provided")
 					}

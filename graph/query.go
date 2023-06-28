@@ -8,6 +8,7 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
+// Our employee filters
 var EmployeeFilterInput = graphql.NewInputObject(graphql.InputObjectConfig{
 	Name: "EmployeeFilterInput",
 	Fields: graphql.InputObjectConfigFieldMap{
@@ -20,8 +21,9 @@ var EmployeeFilterInput = graphql.NewInputObject(graphql.InputObjectConfig{
 	},
 })
 
+// The different types of sorting we can do
 var EmployeeSortEnum = graphql.NewEnum(graphql.EnumConfig{
-	Name: "EmployeeDortEnum",
+	Name: "EmployeeSortEnum",
 	Values: graphql.EnumValueConfigMap{
 		"ID_ASC": &graphql.EnumValueConfig{
 			Value: "id ASC",
@@ -38,6 +40,7 @@ var EmployeeSortEnum = graphql.NewEnum(graphql.EnumConfig{
 	},
 })
 
+// Creates the possible queries
 func CreateRootQuery(db *sql.DB) *graphql.Object {
 	var RootQuery = graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",

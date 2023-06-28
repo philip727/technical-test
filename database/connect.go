@@ -9,13 +9,15 @@ import (
 
 var db *sql.DB
 
-var server = "127.0.0.1"
-var user = "sa"
-var password = "YourPassword123"
-var database = "SecuriGroup"
-var port = "1433"
 
+// Creates a connection pool to the MSSQL db
 func CreateConnection() (*sql.DB, error) {
+    var server = "127.0.0.1"
+    var user = "sa"
+    var password = "YourPassword123"
+    var database = "SecuriGroup"
+    var port = "1433"
+
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s;port=%s", server, user, password, database, port)
 
 	conn, err := sql.Open("mssql", connString)

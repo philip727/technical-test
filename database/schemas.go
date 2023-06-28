@@ -1,13 +1,7 @@
 package database
 
-type Position string
 
-const (
-	Junior Position = "Junior"
-	Senior Position = "Senior"
-	Leader Position = "Leader"
-)
-
+// Our employee table
 type Employee struct {
 	Id           uint32
 	FirstName    string
@@ -18,9 +12,4 @@ type Employee struct {
 	DepartmentId uint32
 	Position     string
     Username     string
-}
-
-func (e Employee) WithoutPassword() Employee {
-    e.Password = ""
-    return e
 }

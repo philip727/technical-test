@@ -5,11 +5,11 @@ import (
 	"net/smtp"
 )
 
-const server = "localhost"
-const port = 1025
-const sender = "noreply@SecuriGroup.co.uk"
-
 func SendNoreplyMail(recipient string, subject string, body string) error {
+    var server = "localhost"
+    var port = 1025
+    var sender = "noreply@SecuriGroup.co.uk"
+
     message := fmt.Sprintf("Subject: %s\r\n\r\n%s", subject, body)
 
     auth := smtp.PlainAuth("", "", "", server)

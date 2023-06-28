@@ -4,6 +4,7 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
+// The employee type that is returned from graphql queries
 var EmployeeType = graphql.NewObject(graphql.ObjectConfig{
 	Name: "Employee",
 	Fields: graphql.Fields{
@@ -19,6 +20,7 @@ var EmployeeType = graphql.NewObject(graphql.ObjectConfig{
 		"password": &graphql.Field{
 			Type: graphql.String,
 			// I feel like it makes sense to remove the password from the queries
+            // Only db admins should be able to see the passwords 
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 				return nil, nil
 			},
@@ -38,6 +40,7 @@ var EmployeeType = graphql.NewObject(graphql.ObjectConfig{
 	},
 })
 
+// The staff positions
 var PositionEnum = graphql.NewEnum(graphql.EnumConfig{
 	Name: "Position",
 	Values: graphql.EnumValueConfigMap{

@@ -23,6 +23,7 @@ func (e *UnauthorizedError) Error() string {
 	return e.Msg
 }
 
+// The json that is held in the JWt
 type JWTPayload struct {
 	Id       uuid.UUID
 	Username string

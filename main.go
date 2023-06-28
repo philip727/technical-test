@@ -26,9 +26,11 @@ func main() {
         log.Fatal(err)    
     }
 
-    rootQuery := graph.CreateRootQuery(database);
+    rootQuery := graph.CreateRootQuery(database)
+    rootMutation := graph.CreateRootMutation(database)
     schema, err := graphql.NewSchema(graphql.SchemaConfig{
         Query: rootQuery,
+        Mutation: rootMutation,
     })
 
     if err != nil {

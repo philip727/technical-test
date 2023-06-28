@@ -9,7 +9,7 @@ Couldn't get the **Bonus** working. Tried many different ways and couldn't figur
 
 # Setting up the project locally
 ###  Cloning the repository
-```bash
+```terminal
 git clone https://github.com/philip727/technical-test
 ```
 ###  Starting docker
@@ -32,7 +32,7 @@ Two files have been provided:
 Run them in the same order as above and your MSSQL database will now have a table for employees and will now be populated with 10 new employees. Make sure to run each query in **create.sql** one at a time, sequentially. The passwords are provided in the **users.sql** file.
 
 ### Running the application
-**MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**
+**MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**.
 First we need to install the go dependencies, run these commands in order
 ```bash
 go mod init
@@ -44,7 +44,7 @@ go run main.go
 ```
 
 ### Building the application
-**MAKE SURE YOU HAVE GO INSTALLED. IF NOT, GO HERE: [Golang Download](https://golang.org/dl/)**
+**MAKE SURE YOU HAVE GO INSTALLED. IF NOT, GO HERE: [Golang Download](https://golang.org/dl/)**.
 First we need to install the go dependencies, run these commands in order
 ```bash
 go mod init
@@ -57,7 +57,7 @@ go build
 Then start the .exe that will be made in the root directory, might be called: **tech-test.exe**.
 
 #  Testing with Postman
-**MAKE SURE YOU HAVE POSTMAN INSTALLED. IF NOT, GO HERE:  [Postman Download](https://www.postman.com/downloads/)**
+**MAKE SURE YOU HAVE POSTMAN INSTALLED. IF NOT, GO HERE:  [Postman Download](https://www.postman.com/downloads/)**.
 Import the **tests.postman_collection.json** from the root directory into Postman, click on a query and press the send button and it will send a request.
 
 # Production Readiness

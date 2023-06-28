@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "00787e55-177c-45d7-a6fa-b3b4285c1234",
+		"name": "SecuriGroup technical test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28243943"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "JohnDoe599",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "JohnDoe",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Id & Firstname in Id Descending order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employees(sort: ID_DESC) {\r\n        id\r\n        firstName\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Grabs all employees",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employees {\r\n        id\r\n        firstName\r\n        lastName\r\n        email\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Failure to grab",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employee(id: 29) {\r\n        id\r\n        firstName\r\n        lastName\r\n        email\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n    createEmployee(input: {\r\n        firstName: \"Ben\"\r\n        lastName: \"Also Ben\"\r\n        username: \"OnceAgainBen\"\r\n        password: \"BenPasswordEdition\"\r\n        email: \"Ben@BensEmailService.com\"\r\n        dateOfBirth: \"2002-08-12\"\r\n        departmentId: 7\r\n        position: JUNIOR\r\n    })\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

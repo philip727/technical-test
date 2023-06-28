@@ -3,8 +3,10 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/denisenkom/go-mssqldb"
 	"log"
+	"securigroup/tech-test/utils"
+
+	_ "github.com/denisenkom/go-mssqldb"
 )
 
 var db *sql.DB
@@ -12,11 +14,11 @@ var db *sql.DB
 
 // Creates a connection pool to the MSSQL db
 func CreateConnection() (*sql.DB, error) {
-    var server = "127.0.0.1"
-    var user = "sa"
-    var password = "YourPassword123"
-    var database = "SecuriGroup"
-    var port = "1433"
+    var server = utils.GetEnvVar("DB_SERVER")
+    var user = utils.GetEnvVar("DB_USER")
+    var password = utils.GetEnvVar("DB_PASSWORD")
+    var database = utils.GetEnvVar("DB_DATABASE")
+    var port = utils.GetEnvVar("DB_PORT")
 
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s;port=%s", server, user, password, database, port)
 

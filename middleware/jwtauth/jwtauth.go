@@ -16,20 +16,24 @@ func verifyJWT(token string, c *fiber.Ctx) (bool, string) {
 
 	parsedToken, err := jwt.Parse(token, keyFunc)
 	if err != nil {
-		return false, err.Error()
-	}
+		return false, "No authorisation token was provided"
+    }
 
 	if !parsedToken.Valid {
 		return false, "Token is invalid"
 	}
 
-	claims := parsedToken.Claims.(jwt.MapClaims)
-    exp, ok := claims["exp"].(int64)
+	claims, ok := parsedToken.Claims.(jwt.MapClaims)
+    if !ok {
+        return false, "Failed to parse claims"
+    }
+
+    exp, ok := claims["exp"].(float64)
     if !ok {
         return false, "Invalid expiry time"
     }
 
-	if exp > time.Now().Unix() {
+	if int64(exp) < time.Now().Unix() {
 		return false, "Token has expired, relogin"
 	}
 

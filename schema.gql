@@ -1,46 +1,63 @@
 type Employee {
-  id: ID!
+  id: Int
   firstName: String
   lastName: String
   password: String
   email: String
   dateOfBirth: String
   departmentId: Int
-  position: Position!
+  position: Position
 }
 
 enum Position {
-  JUNIOR
-  SENIOR
-  LEADER
+    JUNIOR
+    SENIOR
+    DEVELOPER
+}
+
+
+input EmployeeFilter {
+  departmentIdEquals: Int
+  positionEquals: PositionEnum
+}
+
+input CreateEmployee {
+  firstName: String!
+  lastName: String!
+  username: String!
+  password: String!
+  email: String!
+  dateOfBirth: String!
+  departmentId: Int!
+  position: PositionEnum!
+}
+
+input UpdateEmployee {
+  id: Int!
+  firstName: String
+  lastName: String
+  username: String
+  password: String
+  email: String
+  dateOfBirth: String
+  departmentId: Int
+  position: PositionEnum
+}
+
+enum EmployeeSort {
+  ID_ASC
+  ID_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
 }
 
 type Query {
-  employee(id: ID!): Employee
-  employees: [Employee]
+  employees(filter: EmployeeFilter, sort: EmployeeSort, amount: Int, page: Int): [Employee]
+  employee(id: Int): EmployeeType
 }
 
 type Mutation {
-  createEmployee(
-    firstName: String
-    lastName: String
-    password: String
-    email: String
-    dateOfBirth: String
-    departmentId: Int
-    position: Position!
-  ): Employee
-  updateEmployee(
-    id: ID!
-    firstName: String
-    lastName: String
-    password: String
-    email: String
-    dateOfBirth: String
-    departmentId: Int
-    position: Position!
-  ): Employee
-  deleteEmployee(id: ID!): Boolean
+  createEmployee(input: CreateEmployee!): String
+  updateEmployee(input: UpdateEmployee!): String
+  deleteEmployee(id: Int!): Boolean
 }
-
-

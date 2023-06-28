@@ -10,7 +10,7 @@ import (
 
 // The inputs required for creating an employee
 var CreateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
-	Name: "CreateEmployeeInput",
+	Name: "CreateEmployee",
 	Fields: graphql.InputObjectConfigFieldMap{
 		"firstName": &graphql.InputObjectFieldConfig{
 			Type: graphql.NewNonNull(graphql.String),
@@ -41,7 +41,7 @@ var CreateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
 
 // The inputs required for updating an employee
 var UpdateEmployeeInputType = graphql.NewInputObject(graphql.InputObjectConfig{
-	Name: "UpdateEmployeeInput",
+	Name: "UpdateEmployee",
 	Fields: graphql.InputObjectConfigFieldMap{
         // Non null because we update by the user by their id
 		"id": &graphql.InputObjectFieldConfig{
@@ -121,7 +121,7 @@ func CreateRootMutation(db *sql.DB) *graphql.Object {
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					id, ok := p.Args["id"].(int)
 					if !ok {
-						return false, errors.New("Invalid input arguments")
+						return false, errors.New("You input an invalid Id")
 					}
 
 					ok, err := handlers.DeleteEmployee(db, uint32(id))

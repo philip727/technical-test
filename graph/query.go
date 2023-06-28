@@ -10,7 +10,7 @@ import (
 
 // Our employee filters
 var EmployeeFilterInput = graphql.NewInputObject(graphql.InputObjectConfig{
-	Name: "EmployeeFilterInput",
+	Name: "EmployeeFilter",
 	Fields: graphql.InputObjectConfigFieldMap{
 		"departmentIdEquals": &graphql.InputObjectFieldConfig{
 			Type: graphql.Int,
@@ -23,7 +23,7 @@ var EmployeeFilterInput = graphql.NewInputObject(graphql.InputObjectConfig{
 
 // The different types of sorting we can do
 var EmployeeSortEnum = graphql.NewEnum(graphql.EnumConfig{
-	Name: "EmployeeSortEnum",
+	Name: "EmployeeSort",
 	Values: graphql.EnumValueConfigMap{
 		"ID_ASC": &graphql.EnumValueConfig{
 			Value: "id ASC",

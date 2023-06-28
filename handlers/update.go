@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"securigroup/tech-test/utils"
 	"strings"
@@ -16,12 +17,16 @@ func UpdateEmployee(db *sql.DB, args map[string]interface{}) (string, error) {
             continue
         }
 
-        newQuery := fmt.Sprint("SET ", utils.ConvertCamelToSnake(column), " = '", newValue, "'");
+        newQuery := fmt.Sprintf("SET %s = '%s'", utils.ConvertCamelToSnake(column), newValue);
         setQueries = append(setQueries, newQuery);
     }
 
-    query += strings.Join(setQueries, ", ") + fmt.Sprint(" WHERE id = ", args["id"].(int))
+    id, ok := args["id"].(int) 
+    if !ok {
+        return "", errors.New("The provided id is invalid, please provide a valid id")
+    }
 
+    query += strings.Join(setQueries, ", ") + fmt.Sprintf(" WHERE id = %d", id)
     if _, err := db.Exec(query); err != nil {
         return "", err
     }

@@ -1,0 +1,46 @@
+type Employee {
+  id: ID!
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+  dateOfBirth: String
+  departmentId: Int
+  position: Position!
+}
+
+enum Position {
+  JUNIOR
+  SENIOR
+  LEADER
+}
+
+type Query {
+  employee(id: ID!): Employee
+  employees: [Employee]
+}
+
+type Mutation {
+  createEmployee(
+    firstName: String
+    lastName: String
+    password: String
+    email: String
+    dateOfBirth: String
+    departmentId: Int
+    position: Position!
+  ): Employee
+  updateEmployee(
+    id: ID!
+    firstName: String
+    lastName: String
+    password: String
+    email: String
+    dateOfBirth: String
+    departmentId: Int
+    position: Position!
+  ): Employee
+  deleteEmployee(id: ID!): Boolean
+}
+
+

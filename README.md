@@ -7,11 +7,11 @@
 Couldn't get the **Bonus** working. Tried many different ways and couldn't figure out how to get a specific status code from "graphql-go" handlers. Couldn't check for error type and couldn't add to "extensions" for specific error codes.
 
 # Setting up the project locally
-####  Cloning the repository
+###  Cloning the repository
 ```bash
 git clone https://github.com/philip727/technical-test
 ```
-####  Starting docker
+###  Starting docker
 Go into the file where you cloned the repository.
 ```bash
 cd technical-test
@@ -21,7 +21,7 @@ Start the SMTP Server and Azure MSSQL Server from Docker. We use the -d flag(det
 docker-compose up -d
 ```
 
-#### Populating the database
+### Populating the database
 Time to populate the MSSQL Database. Connect to the Database using your preferred tool (server: 127.0.0.01, port: 1433, username: sa, password: YourPassword123)
 
 Two files have been provided:
@@ -30,7 +30,7 @@ Two files have been provided:
  
 Run them in the same order as above and your MSSQL database will now have a table for employees and will now be populated with 10 new employees. Make sure to run each query in **create.sql** one at a time, sequentially. The passwords are provided in the **users.sql** file.
 
-#### Running the application
+### Running the application
 **MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**
 First we need to install the go dependencies, run these commands in order
 ```bash
@@ -42,7 +42,7 @@ Now we start the go app. This will start the go app where we will make all our r
 go run main.go
 ```
 
-#### Building the application
+### Building the application
 **MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**
 First we need to install the go dependencies, run these commands in order
 ```bash

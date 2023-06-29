@@ -31,9 +31,6 @@ Two files have been provided:
  
 Execute them in the same order as above and your MSSQL database will now have a table for employees and will now be populated with 10 new employees. Make sure to run each query in **create.sql** one at a time, sequentially. The passwords are provided in the **users.sql** file.
 
-# Viewing Mailhog
-Go to [127.0.0.1:8025](http://127.0.0.1:8025) and this will bring you to the mailhog UI, here you will be able to see all emails that 
-have been sent when creating an employee
 
 ### Running the application
 **MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**.
@@ -59,6 +56,10 @@ Now we build the go app.  This will create an executable for you to run.
 go build
 ```
 Then start the .exe that will be made in the root directory, might be called: **tech-test.exe**.
+
+# Viewing Mailhog
+Go to [127.0.0.1:8025](http://127.0.0.1:8025) and this will bring you to the mailhog UI, here you will be able to see all emails that 
+have been sent when creating an employee
 
 #  Testing with Postman
 **MAKE SURE YOU HAVE POSTMAN INSTALLED. IF NOT, GO HERE:  [Postman Download](https://www.postman.com/downloads/)**.

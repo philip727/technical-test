@@ -75,12 +75,12 @@ func GetAllEmployees(db *sql.DB, filters map[string]interface{}, sort string, am
 			&employee.Id,
 			&employee.FirstName,
 			&employee.LastName,
+			&employee.Username,
 			&employee.Password,
 			&employee.Email,
 			&employee.DateOfBirth,
 			&employee.DepartmentId,
 			&employee.Position,
-			&employee.Username,
 		)
 
 		if err != nil {
@@ -99,20 +99,20 @@ func GetEmployeeById(db *sql.DB, id uint32) (database.Employee, error) {
 		&employee.Id,
 		&employee.FirstName,
 		&employee.LastName,
+		&employee.Username,
 		&employee.Password,
 		&employee.Email,
 		&employee.DateOfBirth,
 		&employee.DepartmentId,
 		&employee.Position,
-		&employee.Username,
 	)
 
 	if row != nil {
 		if errors.Is(row, sql.ErrNoRows) {
 			return employee, &CustomError{
-                Msg: fmt.Sprintf("Could not find employee with the id: %d", id),
-                Status: 404,
-            }
+				Msg:    fmt.Sprintf("Could not find employee with the id: %d", id),
+				Status: 404,
+			}
 		}
 	}
 

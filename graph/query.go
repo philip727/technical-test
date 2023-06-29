@@ -97,7 +97,6 @@ func CreateRootQuery(db *sql.DB) *graphql.Object {
 						Type: graphql.Int,
 					},
 				},
-
 				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 					id, ok := p.Args["id"].(int)
 					if !ok {
@@ -107,6 +106,18 @@ func CreateRootQuery(db *sql.DB) *graphql.Object {
 					return handlers.GetEmployeeById(db, uint32(id))
 				},
 			},
+            // Get's the current employee from the jwt auth
+            "currentEmployee": &graphql.Field{
+                Type: EmployeeType,
+                Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+                    userId, ok := p.Context.Value("userId").(uint32)
+                    if !ok {
+                        return nil, errors.New("Your id(uid) is invalid")
+                    }
+
+                    return handlers.GetEmployeeById(db, userId)
+                },
+            },
 		},
 	})
 

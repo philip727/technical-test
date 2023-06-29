@@ -16,6 +16,7 @@ import (
 // The json that is held in the JWt
 type JWTPayload struct {
 	Id       uuid.UUID
+	Uid      uint32
 	Username string
 	Created  int64
 	Expiry   int64
@@ -34,8 +35,10 @@ func createJWTPayload(e database.Employee) (JWTPayload, error) {
 		return JWTPayload{}, err
 	}
 
+    // The information held in the jwt
 	payload := &JWTPayload{
 		Id:       id,
+		Uid:      e.Id,
 		Username: e.Username,
 		Created:  time.Now().Unix(),
 		Expiry:   time.Now().Add(time.Hour * 24 * 14).Unix(),
@@ -48,6 +51,7 @@ func createJWTPayload(e database.Employee) (JWTPayload, error) {
 func createJWTToken(jwtp JWTPayload) (string, error) {
 	claims := jwt.MapClaims{
 		"id":       jwtp.Id,
+		"uid":      jwtp.Uid,
 		"username": jwtp.Username,
 		"exp":      jwtp.Expiry,
 		"iat":      jwtp.Created,
@@ -78,12 +82,12 @@ func LoginEmployeeHanlder(db *sql.DB, p types.LoginPayload) (string, error) {
 		&employee.Id,
 		&employee.FirstName,
 		&employee.LastName,
+		&employee.Username,
 		&employee.Password,
 		&employee.Email,
 		&employee.DateOfBirth,
 		&employee.DepartmentId,
 		&employee.Position,
-		&employee.Username,
 	)
 
 	if err != nil {

@@ -17,6 +17,9 @@ var EmployeeType = graphql.NewObject(graphql.ObjectConfig{
 		"lastName": &graphql.Field{
 			Type: graphql.String,
 		},
+        "username": &graphql.Field{
+            Type: graphql.String,
+        },
 		"password": &graphql.Field{
 			Type: graphql.String,
 			// I feel like it makes sense to remove the password from the queries

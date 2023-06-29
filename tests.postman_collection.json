@@ -16,12 +16,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "JohnDoe599",
+							"value": "mikejohnson",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "JohnDoe",
+							"value": "banana432",
 							"type": "text"
 						}
 					]
@@ -44,13 +44,13 @@
 			"response": []
 		},
 		{
-			"name": "Id & Firstname in Id Descending order",
+			"name": "Sorting",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorisation",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"value": "{{JWT_TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -79,13 +79,48 @@
 			"response": []
 		},
 		{
+			"name": "Filter & Sort",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "{{JWT_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employees(sort: ID_DESC, filter: {\r\n        positionEquals: JUNIOR\r\n    }) {\r\n        id\r\n        firstName\r\n        lastName\r\n        username\r\n        dateOfBirth\r\n        position\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Grabs all employees",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorisation",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"value": "{{JWT_TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -114,13 +149,13 @@
 			"response": []
 		},
 		{
-			"name": "Failure to grab",
+			"name": "Failure to grab by id",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorisation",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"value": "{{JWT_TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -149,13 +184,83 @@
 			"response": []
 		},
 		{
+			"name": "Grab employee by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "{{JWT_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employee(id: 7) {\r\n        id\r\n        firstName\r\n        lastName\r\n        email\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get employee with context",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorisation",
+						"value": "{{JWT_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    currentEmployee {\r\n        id\r\n        firstName\r\n        lastName\r\n        email\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create employee",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorisation",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkxOTA2OTQsImlhdCI6MTY4Nzk4MTA5NCwiaWQiOiIxNjVmN2VjYi03YWFhLTQ3MzUtODgxNS00ZDNhYWNiNzYxYjIiLCJ1c2VybmFtZSI6IkpvaG5Eb2U1OTkifQ._qQ843YmuLC0PbNYg0Qk07gtEhGpKyotasyeOQvTgOw",
+						"value": "{{JWT_TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -182,6 +287,41 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "No auth header",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    employees {\r\n        id\r\n        firstName\r\n        lastName\r\n        email\r\n        dateOfBirth\r\n        departmentId\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/employee",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "JWT_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODkyMzIyNDEsImlhdCI6MTY4ODAyMjY0MSwiaWQiOiJhOGYxZjAxOS01NTk3LTQ2MTgtODU4NS03YmZkNWIzMWE4MjIiLCJ1aWQiOjMsInVzZXJuYW1lIjoibWlrZWpvaG5zb24ifQ.pWaT1Lfz1O06-IZtg_5elku9yDymMCnxx4V89Og6j_E"
 		}
 	]
 }

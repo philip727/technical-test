@@ -23,13 +23,17 @@ docker-compose up -d
 ```
 
 ### Populating the database
-Time to populate the MSSQL Database. Connect to the Database using your preferred tool (server: 127.0.0.01, port: 1433, username: sa, password: YourPassword123)
+Time to populate the MSSQL Database. Connect to the Database using your preferred tool (server: 127.0.0.1, port: 1433, username: sa, password: YourPassword123)
 
 Two files have been provided:
  1. **create.sql**
  2. **users.sql**
  
-Run them in the same order as above and your MSSQL database will now have a table for employees and will now be populated with 10 new employees. Make sure to run each query in **create.sql** one at a time, sequentially. The passwords are provided in the **users.sql** file.
+Execute them in the same order as above and your MSSQL database will now have a table for employees and will now be populated with 10 new employees. Make sure to run each query in **create.sql** one at a time, sequentially. The passwords are provided in the **users.sql** file.
+
+# Viewing Mailhog
+Go to [127.0.0.1:8025](http://127.0.0.1:8025) and this will bring you to the mailhog UI, here you will be able to see all emails that 
+have been sent when creating an employee
 
 ### Running the application
 **MAKE SURE YOU HAVE GO INSTALLED. IF NOT GO HERE: [Golang Download](https://golang.org/dl/)**.
@@ -58,11 +62,12 @@ Then start the .exe that will be made in the root directory, might be called: **
 
 #  Testing with Postman
 **MAKE SURE YOU HAVE POSTMAN INSTALLED. IF NOT, GO HERE:  [Postman Download](https://www.postman.com/downloads/)**.
-Import the **tests.postman_collection.json** from the root directory into Postman, click on a query and press the send button and it will send a request.
+Import the **tests.postman_collection.json** from the root directory into Postman, click on a request and press the send button and it will send a request.
 
 # Production Readiness
 Setting up for production is as simple as changing the **PRODUCTION** key in the **.env** to 1 and it will use all the production keys rather than the test keys.
-
 ```dotenv
 PRODUCTION=1 # OR 0
 ```
+
+

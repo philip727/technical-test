@@ -38,7 +38,7 @@ func verifyJWT(token string, c *fiber.Ctx) (bool, string) {
 	}
 
 	// Allows us to use the username in current request context
-	c.Locals("Username", claims["username"])
+	c.Locals("userId", claims["uid"])
 
 	return true, ""
 }

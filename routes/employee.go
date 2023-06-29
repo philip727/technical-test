@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"context"
 	"database/sql"
 	"errors"
 	"regexp"
@@ -66,18 +67,28 @@ func CreateEmployeeRoute(f *fiber.App, db *sql.DB, s graphql.Schema) {
         }
 
         if err := c.BodyParser(&requestBody); err != nil {
-            return err
+            return c.SendStatus(400) // Straight up sends a 400 with the text of "Bad request data"
         }
+
+        // For some reason type assertion on integers is weird
+        userIdf64, ok := c.Locals("userId").(float64)
+        if !ok {
+            return c.Status(401).SendString("Failed to grab UID from JWT Token")
+        }
+
+        userId := uint32(userIdf64)
         
 		result := graphql.Do(graphql.Params{
 			Schema:        s,
 			RequestString: requestBody.Query,
+            Context: context.WithValue(context.Background(), "userId", userId),
 		})
 
 		if len(result.Errors) > 0 {
             mainError := result.Errors[0]
 
-			return c.Status(404).SendString(mainError.Message)
+            // Couldn't figure out how to push status codes from the graphql errors
+			return c.Status(400).SendString(mainError.Message)
 		}
 
 		return c.JSON(result)
